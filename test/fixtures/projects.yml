@@ -1,0 +1,35 @@
+# == Schema Information
+#
+# Table name: projects
+#
+#  id           :integer          not null, primary key
+#  title        :string(255)
+#  production   :string(255)
+#  dop          :string(255)
+#  pickupday    :datetime
+#  returnday    :datetime
+#  shootingdays :integer
+#  creator_id   :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  production: MyString
+  dop: MyString
+  pickupday: 2015-02-06 12:21:58
+  returnday: 2015-02-06 12:21:58
+  shootingdays: 1
+  user_id: 1
+
+two:
+  name: MyString
+  production: MyString
+  dop: MyString
+  pickupday: 2015-02-06 12:21:58
+  returnday: 2015-02-06 12:21:58
+  shootingdays: 1
+  user_id: 1

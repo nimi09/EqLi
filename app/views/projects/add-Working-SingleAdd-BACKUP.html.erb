@@ -1,0 +1,98 @@
+<% provide(:title, 'Add Products') %>
+
+<%= render 'shared/project_profile_head' %>
+
+<% provide(:btntitle, "<span class=\"glyphicon glyphicon-list-alt\"></span> Back to project".html_safe ) %>
+<% provide(:link, user_project_path(current_user, @project) ) %>
+<%= render 'shared/header_submenu' %>
+
+<div class="container top-padding">
+	<div class="row">
+		<div class="col-md-3">
+			<h1>Categories</h1>
+			<div class="category-tree-wrapper">
+				<% @maincategories.each do |c| %>
+					<%= display_tree(c) %>
+					<br>
+				<% end %>
+			</div>
+		</div>
+		<div class="col-md-9">
+
+			<% if @current_category %>
+				<h1><%= @current_category.name %></h1>
+				<hr>
+
+				<% if @products.count > 0 %>
+
+					<%= link_to "Save", "#", class: "btn btn-success top-margin" %>
+					<table class="table table-bordered table-striped top-margin-20">
+						<thead>
+							<tr>
+								<th class="text-center">Quantity</th>
+								<th style="width: 50%;">Item</th>
+								<th style="width: 50%;">Description</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<% @products.each do |p| %>
+								<tr>
+									<td class="bang-nowrap">
+
+										<div class="input-group">
+											<span class="input-group-btn">
+												<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-minus"></span></button>
+											</span>
+											<input type="text" class="form-control" value="<%= 
+											p.assigned_products.where('project_id = ?', @project.id ).first().quantity if  p.assigned_products.where('project_id = ?', @project.id ).first != nil
+											%>" style="width: 52px; text-align: right;">
+											<span class="input-group-btn">
+												<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-plus"></span></button>
+											</span>
+										</div><!-- /input-group -->									
+									</td>
+									<td>
+										<h4 style="margin: 6px 0 0 0;"><strong><%= p.name %></strong></h4>
+										<% if p.included_acc != "" %>
+											<p style="margin-top: 10px;"><strong>With:</strong> <%= p.included_acc %></p>
+										<% end %>
+									</td>
+									<td><%= p.description %></td>
+									<td><%= link_to raw('<span class="glyphicon glyphicon-plus"></span>'), user_project_path(current_user, @project) + "/assignproduct/" + p.id.to_s + "/cat/" + @current_category.id.to_s, class: "btn btn-default", method: "post" %></td>
+								</tr>
+							<% end %>
+						</tbody>
+					</table>
+					<%= link_to "Save", "#", class: "btn btn-success" %>
+
+				<% else %><!-- Products -->
+					<p class="top-margin">
+						<% @current_category.subcategories.order("name ASC").each do |subc| %>
+							<h3>
+								<%= link_to subc.name, add_user_project_path(current_user, @project) + "/" + subc.id.to_s %>
+							</h3>
+						<% end %>
+					</p>
+				<% end %>
+
+
+
+
+
+			<% else %>
+				<h1>Select Category</h1>
+
+				<p class="top-margin">
+					<% @maincategories.each do |c| %>
+						<h3>
+							<%= link_to c.name, add_user_project_path(current_user, @project) + "/" + c.id.to_s %>
+						</h3>
+					<% end %>
+				</p>
+
+			<% end %>
+
+		</div>
+	</div>
+</div>

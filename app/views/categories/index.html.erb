@@ -1,0 +1,71 @@
+<% provide(:title, 'All Categories') %>
+
+<%= render 'categories_head' %>
+
+<div class="container top-padding">
+	<div class="row">
+		<div class="col-md-3">
+			<%= render 'menu_leftside_categories' %>
+		</div>
+		<div class="col-md-9">
+
+			<h1><%= @category.nil? ? 'Main categories' : @category.name %></h1>
+
+			<div class="top-margin">
+
+				<% if @categories.count > 0 %>
+					<table class="table table-bordered table-hover">
+						<thead>
+							<tr>
+								<th>Category_NAME</th>
+								<th>Parent_ID</th>
+								<th style="white-space: nowrap;">Product Count</th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>						
+						<tbody>
+							<% @categories.each do |category| %>								
+								<tr>
+									<td style="width:100%;"><%= link_to category.name, category_path(category) %></td>
+									<td class="text-center"><%= category.parent_id %></td>
+									<td class="text-center"><%= category.products.count %></td>
+									<td><%= link_to 'Edit', edit_category_path(category) %></td>
+									<td><%= link_to raw('<span class="glyphicon glyphicon-trash"></span>'), category_path(category), :confirm => 'Are you sure?', :method => :delete %></td>
+								</tr>
+							<% end %>
+						</tbody>						
+					</table>
+				<% end %>
+				<p>
+					<%= link_to "Edit", edit_category_path(@category), class: "btn btn-danger" if not @category.nil? %>
+					<%= link_to ( @category.nil? ? 'Add new MAIN-Category' : 'Add new SUB-Category' ), ( @category.nil? ? new_category_path : new_category_path(id: @category.id)), class: "btn btn-danger" %>
+					<%= link_to 'Parent category', (@category.parent_id.nil? ? categories_path : category_path(@category.parent_id ) unless @category.nil?), class: "btn btn-default" %>
+					<%= link_to "Add Product", new_category_product_path(@category), class: "btn btn-danger pull-right" unless @category.nil? %>
+				</p>
+
+			</div><!-- top-margin -->
+
+			<% if !@category.nil? && @category.products.count > 0 %>
+				<h2 class="top-margin">Associated Products:</h2>
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th class="bang-nowrap">Product</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @category.products.each do |p| %>
+							<tr>
+								<td><%= p.id %></td>
+								<td class="bang-nowrap"><%= link_to p.name, product_path(p) %></td>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
+			<% end %>
+
+		</div>
+	</div>
+</div>

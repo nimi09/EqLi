@@ -1,0 +1,21 @@
+<% @maincategories.each do |mc| %>
+
+	<div class="panel panel-default top-margin-20">
+
+		<div class="panel-heading">
+			<% if @display_links %>
+				<h1><strong><%= link_to mc.name, add_user_project_path(current_user, @project) + "/#{mc.id}" %></strong></h1>
+			<% else %>
+				<h1><strong><%= mc.name %></strong></h1>
+			<% end %>
+		</div>
+
+		<%= display_products_or_sub_category_of_project(mc, @project, @display_links, @display_deletebtn ) %>
+
+		<%= display_product_table_of_category(mc, @project, @display_links, @display_deletebtn )  if mc.products.count > 0 %>
+
+	</div><!-- of panel -->
+
+		<p><h1>&nbsp;</h1></p>
+
+<% end %>

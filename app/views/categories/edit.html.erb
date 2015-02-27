@@ -1,0 +1,29 @@
+<% provide(:title, 'Edit Category') %>
+
+<%= render 'categories_head' %>
+
+<div class="container top-padding">
+	<div class="row">
+		<div class="col-md-3">
+			<%= render 'menu_leftside_categories' %>
+		</div>
+		<div class="col-md-4 col-md-offset-1">
+			<h1>Edit Category</h1>
+
+			<%= form_for @category, html: { class: "top-margin" } do |f| %>
+				<%= render 'shared/error_messages', object: f.object %>
+
+				<div class="form-group">
+					<%= f.label :name %>
+					<%= f.text_field :name, class: 'form-control', autofocus: :true %>
+				</div>
+				<%= f.hidden_field :parent_id %>
+
+				<%= f.submit "Edit Category", class: "btn btn-danger" %>
+				<%= link_to "Cancle", :back, class: "btn btn-default pull-right" %>
+
+			<% end %>
+
+		</div>
+	</div>
+</div>

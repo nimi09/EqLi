@@ -1,0 +1,5 @@
+<div class="list-group">
+	<%= link_to raw("<span class=\"glyphicon glyphicon-plus\"></span> Add Equipment"), add_user_project_path(current_user, @project), class: "list-group-item", style: "text-align: left !important; width: 100%;" %>
+	<%= link_to raw('<span class="glyphicon glyphicon-print"></span> Print version'), print_user_project_path(current_user, @project), class: "list-group-item", style: "text-align: left !important; width: 100%;", target: "_blank" %>
+	<%= link_to raw("<span class=\"glyphicon glyphicon-pencil\"></span> Edit project details"), edit_user_project_path(current_user, @project), class: "list-group-item", style: "text-align: left !important; width: 100%;" %>
+</div>

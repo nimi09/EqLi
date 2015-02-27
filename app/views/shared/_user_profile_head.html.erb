@@ -1,0 +1,21 @@
+<div class="profile-head user-profile-bg">
+
+	<div class="bottom-profil-head">
+			
+		<div class="container">
+			<div class="row" style="vertocal-align: bottom;">
+				<div class="col-xs-3">
+					<%= image_tag "profile-avatar.jpg", class: "profile-head-image" %>
+				</div>
+				<div class="col-xs-9" style=" aposition: absolute; aheight: 100%; aright: 0; atop: 0;">
+					<div style=" aposition: absolute; abottom: 20px; ">
+						<h1><%= current_user.name %></h1>
+						<p><%= pluralize(current_user.projects.count, 'Project') %></p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</div>

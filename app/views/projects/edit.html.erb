@@ -1,0 +1,54 @@
+<% provide(:title, 'Edit Project') %>
+
+<%= render 'shared/project_profile_head' %>
+
+<div class="container top-padding">
+	<div class="row">
+		<div class="col-md-4">
+			
+		</div>
+		<div class="col-md-4">
+			<h1 class="text-center">Edit Project Details</h1>
+			<p>&nbsp;</p>
+
+			<%= form_for( [current_user, @project]) do |f| %>
+				<%= render 'shared/error_messages', object: f.object %>
+
+				<div class="form-group">
+					<%= f.label :title, "Project Title" %>
+					<%= f.text_field :title, class: 'form-control', autofocus: :true %>
+				</div>
+
+				<div class="form-group">
+					<%= f.label :production, "Production Company" %>
+					<%= f.text_field :production, class: 'form-control' %>
+				</div>
+
+				<div class="form-group">
+					<%= f.label :dop, "Director of Photography" %>
+					<%= f.text_field :dop, class: 'form-control' %>
+				</div>
+
+				<div class="form-group">
+					<%= f.label :pickupday, "Pick up date (dd/mm/yyyy)" %>
+					<%= f.text_field :pickupday, value: ( @project.pickupday ? @project.pickupday.strftime("%d/%m/%Y") : "" ), class: 'datepicker-one form-control', size: "10", maxlength: "10" %>
+				</div>
+
+				<div class="form-group">
+					<%= f.label :returnday, "Return date (dd/mm/yyyy)" %>
+					<%= f.text_field :returnday, value: (@project.returnday  ? @project.returnday.strftime("%d/%m/%Y") : "" ), class: 'datepicker-two form-control', size: "10", maxlength: "10" %>
+				</div>
+
+				<div class="form-group">
+					<%= f.label :shootingdays, "Number of shooting days" %>
+					<%= f.text_field :shootingdays, class: 'form-control' %>
+				</div>
+
+				<%= f.submit "Save changes", class: "btn btn-danger" %>
+				<%= link_to "Cancle", :back, class: "btn btn-default pull-right" %>
+
+			<% end %>
+
+		</div>
+	</div>
+</div>

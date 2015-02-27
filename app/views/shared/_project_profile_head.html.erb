@@ -1,0 +1,24 @@
+<div class="profile-head">
+
+	<div class="bottom-profil-head">
+			
+		<div class="container">
+			<div class="row" style="vertocal-align: bottom;">
+				<div class="col-md-12" style=" aposition: absolute; aheight: 100%; aright: 0; atop: 0;">
+					<div style=" aposition: absolute; abottom: 20px; ">
+						<h1><%= @projecttitle.nil? ? @project.title : @projecttitle %></h1>
+						<ul class="list-unstyled list-inline">
+							<%= @project.production == "" ? "" : "<li>Production Company: <strong>#{@project.production}</strong></li>".html_safe %>
+							<%= @project.dop == "" ? "" : "<li>DoP: <strong>#{@project.dop}</strong></li>".html_safe %>
+							<%= @project.pickupday .nil? ? "" : "<li>Pick up date: <strong>#{@project.pickupday.strftime('%d/%m/%Y')}</strong></li>".html_safe %>
+							<%= @project.returnday.nil? ? "" : "<li>Return date: <strong>#{@project.returnday.strftime('%d/%m/%Y')}</strong></li>".html_safe %>
+							<%= @project.shootingdays.nil? ? "" : "<li>Estimated shootingdays: <strong>#{@project.shootingdays}</strong></li>".html_safe %>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</div>

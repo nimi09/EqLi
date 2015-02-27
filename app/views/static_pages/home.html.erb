@@ -1,0 +1,52 @@
+<% provide(:title, 'home') %>
+<div class="homeheader">
+	<div class="homeheader-text">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h1>Create your Equipment List with Ease!</h1>
+					<% if not loged_in? %>
+						<h3>Sign up and get</h3>
+						<h3><%= link_to "STARTED", signup_path, class: "btn btn-lg btn-danger" %></h3>
+					<% end %>
+				</div>
+			</div>
+		</div>	
+	</div>
+</div>
+
+
+<div class="container top-padding">
+	<div class="row">
+		<div class="col-md-12">
+			<h1 class="text-center">How it works</h1>
+		</div>		
+	</div>
+
+	<div class="row">
+		<div class="col-md-3 text-center">
+			<h3>Create Project</h3>			
+			<p>Create a new project with a single click or clone and customize your list from a previous project.</p>
+		</div>
+		<div class="col-md-3 text-center">
+			<h3>Add Equipment</h3>			
+			<p>Choose equipment from a huge and organised database of commen filmproduction equipment.</p>
+		</div>
+		<div class="col-md-3 text-center">
+			<h3>Add Collaborators</h3>			
+			<p>Invite other Head of Departments to further customize the list.</p>
+		</div>
+		<div class="col-md-3 text-center">
+			<h3>Send to Production</h3>			
+			<p>Send at any time a PDF state of the list with all current informations to the Production Company or Team.</p>
+		</div>
+	</div>
+	
+</div>
+
+
+<script>
+        $(document).ready(function() {
+          $('body').addClass('loaded');
+        });    
+</script>

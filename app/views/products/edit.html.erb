@@ -1,0 +1,17 @@
+<% provide(:title, 'Edit Product') %>
+
+<%= render 'products_head' %>
+
+<div class="container top-padding">
+	<div class="row">
+		<div class="col-md-3">
+			<%= render 'menu_leftside_products' %>
+		</div>
+		<div class="col-md-4 col-md-offset-1">
+			<h1 class="text-center">Edit Product</h1>
+
+			<%= render 'form', product: @product, btntxt: "Update Product" %>
+
+		</div>
+	</div>
+</div>

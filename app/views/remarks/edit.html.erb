@@ -1,0 +1,56 @@
+<% provide(:title, "Edit Remark") %>
+
+<%= render 'shared/project_profile_head' %>
+
+<% provide(:btntitle, "<span class=\"glyphicon glyphicon-list-alt\"></span> Back to project".html_safe ) %>
+<% provide(:link, user_project_path(current_user, @project) ) %>
+<%= render 'shared/header_submenu' %>
+
+<div class="container top-padding">
+	<div class="row">
+		<div class="col-md-3">
+			<%= render 'shared/menu_leftside_project' %>
+		</div>
+		<div class="col-md-9">
+			<div class="panel panel-default top-margin-20">
+				<div class="panel-heading">
+					<h2><%= link_to @product.category.name, user_project_path(current_user, @project) + "/add/" + @product.category.id.to_s %></h2>
+				</div>
+				<div class="panel-body">
+					<table class="table">
+						<thead>
+							<tr>
+								<th class="text-center">Quantity</th>
+								<th style="width: 50%;">Item</th>
+								<th style="width: 50%;">Remarks</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="text-right"><strong><%= @ap.quantity %></strong> x</td>
+								<td><strong><%= @product.name %></strong></td>
+								<td><%= @ap.remarks %></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="col-md-6 col-md-offset-3">
+				<h1 class="text-center">Edit Remark</h1>
+				
+				<%= form_for @ap, url: user_project_path(current_user, @project) + "/remark/#{@product.id}/update/", method: :put do |f| %>
+
+					<div class="form-group">
+						<%= f.label :remarks, "Project Title" %>
+						<%= f.text_area :remarks, size: "30x4", class: 'form-control', autofocus: :true %>
+					</div>
+	
+					<%= submit_tag "Submit", class: "btn btn-danger" %>
+					<%= link_to "Cancle", :back, class: "btn btn-default pull-right" %>
+				
+				<% end %>
+
+			</div>
+		</div>
+	</div>
+</div>

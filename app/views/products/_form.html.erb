@@ -1,0 +1,32 @@
+			<%= form_for product, html: { class: "top-margin" } do |f| %>
+				<%= render 'shared/error_messages', object: f.object %>
+
+				<div class="form-group">
+					<%= f.label :name %>
+					<%= f.text_field :name, class: 'form-control', autofocus: :true %>
+				</div>
+
+				<div class="form-group">
+					<%= f.label :category_id, Category %>
+					<%= f.collection_select :category_id, Category.order(:name),:id,:name, {include_blank: true}, {:class=>'form-control'} %>
+				</div>
+
+				<div class="form-group">
+					<%= f.label :description %>
+					<%= f.text_area :description, size: "60x4", class: 'form-control' %>
+				</div>
+
+				<div class="form-group">
+					<%= f.label :included_acc, "Included Accessories" %>
+					<%= f.text_area :included_acc, size: "60x4", class: 'form-control' %>
+				</div>
+
+				<div class="form-group">
+					<%= f.label :thumb_url %>
+					<%= f.text_field :thumb_url, class: 'form-control' %>
+				</div>
+
+				<%= f.submit btntxt, class: "btn btn-danger" %>
+				<%= link_to "Cancle", :back, class: "btn btn-default pull-right" %>
+
+			<% end %>

@@ -1,0 +1,102 @@
+<% provide(:title, 'Add') %>
+
+<%= render 'shared/project_profile_head' %>
+
+<% provide(:btntitle, "<span class=\"glyphicon glyphicon-list-alt\"></span> Back to project".html_safe ) %>
+<% provide(:link, user_project_path(current_user, @project) ) %>
+<%= render 'shared/header_submenu' %>
+
+
+<div class="container top-padding">
+	<div class="row">
+		<div class="col-md-3">
+			<ul class="list-unstyled category top-margin-20">
+				<li><h4><strong><%= link_to "Categories", add_user_project_path(current_user, @project), class: "top-padding-20" %></strong></h4></li>
+				<% @maincategories.each do |c| %>
+					<%= display_tree(c, @current_category, 1) %>
+				<% end %>
+			</ul>
+		</div>
+		<div class="col-md-9">
+
+			<% if @current_category %>
+				<h1><%= @current_category.name %></h1>
+				<hr>
+
+				<% if @products.count > 0 %>
+
+					<%= form_for( @project, url: assignallproducts_user_project_path(current_user, @project) , method: "post") do |f| %>
+						<%= f.hidden_field :category_id, value: @current_category.id %>
+
+						<%= f.submit "S A V E", class: "btn btn-success top-margin", style: "width: 147px;" %>
+
+						<table class="table top-margin-20">
+							<thead>
+								<th class="text-center">Quantity</th>
+								<th></th>
+								<th style="width: 50%;">Item</th>
+								<th style="width: 50%;">Description</th>
+								<th></th>
+							</thead>
+ 	
+ 							<tbody>
+							<% @products.each do |p| %>
+								<tr<%= p.assigned_products.where("project_id = ?", @project.id).first().nil? ? " class=\"row-normalstate\"".html_safe : " class=\"row-highlighted\"".html_safe %>>
+									<td>
+										<div class="form-group" style="margin: 0;">
+											<%= number_field(:products, :quantity, value: p.assigned_products.where("project_id = ?", @project.id).first().nil? ? "0" : p.assigned_products.where("project_id = ?", @project.id).first.quantity, index: p.id, class: "form-control", style: "width: 70px; text-align: right;") %>
+										</div>
+									</td>
+									<td><img style="width: 140px; height: 95px; background: rgba(0,0,0,.1);"></td>
+									<td>
+										<h4 style="margin: 7px 0 0 0;"><strong><%= p.name %></strong></h4>
+										<% if p.included_acc != "" %>
+											<p style="margin-top: 10px;"><strong>With:</strong> <%= p.included_acc %></p>
+										<% end %>
+									</td>
+									<td>
+										<%= p.description %>
+									</td>
+									<td>
+										<%= link_to raw('<span class="glyphicon glyphicon-plus"></span>'), user_project_path(current_user, @project) + "/assignproduct/" + p.id.to_s + "/cat/" + @current_category.id.to_s, class: "btn btn-default", method: "post", title: "Quick increment by 1" %>
+									</td>
+								</tr>
+							<% end %>
+							</tbody>
+
+						</table>
+						<p class="top-margin-30">
+							<%= link_to raw("<span class=\"glyphicon glyphicon-plus\"></span> Add Custom Item"), new_user_project_category_customitem_path(current_user, @project, @current_category) %>
+						</p>
+						<%= f.submit "S A V E", class: "btn btn-success top-margin-20", style: "width: 147px;" %>
+					<% end %>
+
+
+				<% else %><!-- Products -->
+					<p class="top-margin">
+						<% @current_category.subcategories.order("name ASC").each do |subc| %>
+							<h3>
+								<%= link_to subc.name, add_user_project_path(current_user, @project) + "/" + subc.id.to_s %>
+							</h3>
+						<% end %>
+					</p>
+				<% end %><!-- of oroduct.count > 0 -->
+
+			<% else %>
+				<h1>Select Category</h1>
+
+				<p class="top-margin">
+					<% @maincategories.each do |c| %>
+						<h3>
+							<%= link_to c.name, add_user_project_path(current_user, @project) + "/" + c.id.to_s %>
+						</h3>
+					<% end %>
+				</p>
+
+			<% end %>
+
+		</div>
+	</div>
+</div>
+
+

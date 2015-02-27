@@ -1,0 +1,38 @@
+<% provide(:title, "Product: #{@product.name}") %>
+
+<%= render 'products_head' %>
+
+<div class="container top-padding">
+	<div class="row">
+		<div class="col-md-3">
+			<%= render 'menu_leftside_products' %>
+		</div>
+		<div class="col-md-9">
+
+			<h1><%= @product.name %></h1>
+
+			<table class="table table-bordered top-margin">
+				<tr>
+					<td class="bang-nowrap"><strong>Category</strong></td>
+					<td style="width: 100%;"><%= link_to @product.category.name, category_path(@product.category) %></td>
+				</tr>
+				<tr>
+					<td class="bang-nowrap"><strong>Description</strong></td>
+					<td style="width: 100%;"><%= @product.description.empty? ? "none" : @product.description %></td>
+				</tr>
+				<tr>
+					<td class="bang-nowrap"><strong>Included Accessories</strong></td>
+					<td style="width: 100%;"><%= @product.included_acc.empty? ? "none" : @product.included_acc %></td>
+				</tr>
+				<tr>
+					<td class="bang-nowrap"><strong>Thumb URL</strong></td>
+					<td style="width: 100%;"><%= @product.thumb_url.empty? ? "none" : @product.thumb_url %></td>
+				</tr>
+			</table>
+
+			<%= link_to "Edit", edit_product_path(@product), class: "btn btn-danger" %>
+			<%= link_to "Cancle", :back, class: "btn btn-default" %>
+
+		</div>
+	</div>
+</div>

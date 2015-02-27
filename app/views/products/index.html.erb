@@ -1,0 +1,51 @@
+<% provide(:title, 'All Products') %>
+
+<%= render 'products_head' %>
+
+<div class="container top-padding">
+	<div class="row">
+		<div class="col-md-3">
+			<%= render 'menu_leftside_products' %>
+		</div>
+		<div class="col-md-9">
+
+			<h1>Index Products</h1>
+
+			<div class="top-margin">
+
+				<div class="text-center">
+					<%= will_paginate %>
+					<p>&nbsp;</p>
+				</div>
+
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>Product_NAME</th>
+							<th>Category</th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @products.each do |p| %>
+							<tr>
+							  <td style="width:100%;"><%= link_to p.name, product_path(p) %></td>
+							  <td class="nowrap-td"><%= link_to p.category.name, category_path(p.category) %></td>
+							  <td><%= link_to 'Edit', edit_product_path(p) %></td>
+							  <td><span class="glyphicon glyphicon-trash" style="opacity: 0.5;"></span></td>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
+
+				<div class="text-center">
+					<p>&nbsp;</p>
+					<%= will_paginate %>
+				</div>
+
+			</div>
+
+		</div><!-- col -->
+	</div><!-- row -->
+</div>

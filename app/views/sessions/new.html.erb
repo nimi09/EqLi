@@ -1,0 +1,26 @@
+<% provide(:title, 'Log in') %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4">
+			<h1 class="text-center">Log in</h1>
+
+			<p>&nbsp;</p>
+
+			<%= form_tag sessions_path do %>
+				<div class="form-group">
+					<%= label_tag :email %>
+					<%= text_field_tag :email, params[:email], autofocus: :true, class: 'form-control' %>
+				</div>
+
+				<div class="form-group">
+					<%= label_tag :password %>
+					<%= password_field_tag :password, "", class: 'form-control' %>
+				</div>
+
+				<%= submit_tag "Log in", class: "btn btn-danger" %>
+			<% end %>
+
+		</div>
+	</div>
+</div>

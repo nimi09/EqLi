@@ -1,0 +1,35 @@
+<% provide(:title, 'Print | ' + @project.title ) %>
+
+<style type="text/css">
+	.menu-padding {
+		padding-top: 0;
+	}
+
+	nav, footer {
+		display: none !important;
+	}
+
+	.profile-head h1, .profile-head p, .profile-head ul li {
+		text-shadow: none;
+	}
+
+</style>
+
+<%= render 'shared/project_profile_head' %>
+
+<div class="container top-padding">
+	<div class="row">
+		<div class="col-md-12">
+			<% if @products.count > 0 %>
+
+				<% @display_links = false %>
+				<% @display_deletebtn = false %>
+				<%= render 'equipment_list' %>
+
+			<% else %>
+				<h1>nothing to show</h1>
+			<% end %>
+
+		</div>
+	</div>
+</div>

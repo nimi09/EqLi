@@ -1,0 +1,27 @@
+<% provide(:title, @project.title) %>
+
+<%= render 'shared/project_profile_head' %>
+
+<% provide(:btntitle, "<span class=\"glyphicon glyphicon-user\"></span> Back to profile".html_safe) %>
+<% provide(:link, user_path(current_user)) %>
+<%= render 'shared/header_submenu' %>
+
+<div class="container top-padding">
+	<div class="row">
+		<div class="col-md-3">
+			<%= render 'shared/menu_leftside_project' %>
+		</div>
+		<div class="col-md-9">
+			<% if @products.count > 0 %>
+
+				<% @display_links = true %>
+				<% @display_deletebtn = true%>
+				<%= render 'equipment_list' %>
+
+			<% else %>
+				<h1>nothing to show</h1>
+			<% end %>
+
+		</div>
+	</div>
+</div>
