@@ -31,7 +31,7 @@
 							<td class="align-middle text-right"><%= p.products.count %></td>
 							<td><%= link_to "Add Equipment", add_user_project_path(current_user, p), class: "btn btn-sm btn-default" %></td>
 							<td>
-								<%= link_to raw("<span class=\"glyphicon glyphicon-duplicate\"></span> Clone"), cloneproject_user_project_path(current_user, p), class: "btn btn-sm btn-default" %>
+								<%= link_to raw("Clone"), cloneproject_user_project_path(current_user, p), class: "btn btn-sm btn-default" %>
 							</td>
 							<td>
 								<% if p.creator_id == current_user.id %>

@@ -47,7 +47,7 @@
 											<%= number_field(:products, :quantity, value: p.assigned_products.where("project_id = ?", @project.id).first().nil? ? "0" : p.assigned_products.where("project_id = ?", @project.id).first.quantity, index: p.id, class: "form-control", style: "width: 70px; text-align: right;") %>
 										</div>
 									</td>
-									<td><img style="width: 140px; height: 95px; background: rgba(0,0,0,.1);"></td>
+									<td style="padding: 0;"><img <%= "src=#{p.thumb_url}" if p.thumb_url != "" %> style="width: 140px; height: 95px; background: rgba(0,0,0,.1);"></td>
 									<td>
 										<h4 style="margin: 7px 0 0 0;"><strong><%= p.name %></strong></h4>
 										<% if p.included_acc != "" %>
